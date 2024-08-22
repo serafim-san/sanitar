@@ -91,7 +91,7 @@
 <div>
   <h3>Bitcoin</h3>
   <Chart
-    color="rgba(75, 192, 192, 1)"
+    color="#f2bd6d"
     trades={filterAuthor(filterCoin(trades, "bitcoin"), accountName)}
     prices={metrics?.bitcoin}
   />
