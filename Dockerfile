@@ -10,4 +10,4 @@ COPY . .
 RUN pnpm build
 
 EXPOSE 3000
-CMD ["pnpm", "dev:https"]
+CMD ["pnpm", "preview"]

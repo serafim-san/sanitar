@@ -33,7 +33,9 @@
               label: (context) => {
                 const trade = trades?.[context.dataIndex];
 
-                return trade?.text;
+                return trade?.text
+                  ? `@${trade.account_name}: ${trade.text}`
+                  : undefined;
               },
             },
           },
@@ -71,12 +73,13 @@
         showLine: false,
       },
       {
-        label: "Opens",
+        label: "Closes",
         data: trades.map((trade) => ({
           x: unifiedDateStr(trade.date_close),
           y: parseFloat(trade.price_close),
         })),
         pointStyle: "triangle",
+        hitRadius: 4,
         rotation: trades.map((trade) => (trade.direction === "long" ? 180 : 0)),
         pointBackgroundColor: trades.map((trade) =>
           trade.direction === "long" ? "green" : "#910404"
