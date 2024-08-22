@@ -45,14 +45,17 @@
 
   let canvasElement: HTMLCanvasElement;
 
+  const unifiedDateStr = (dateStr: string) =>
+    new Date(dateStr.endsWith("Z") ? dateStr : dateStr + "Z").toISOString();
+
   $effect(() => {
-    const labels = (prices || []).map((item) => new Date(item.d).toUTCString());
+    const labels = (prices || []).map((item) => unifiedDateStr(item.d));
 
     const datasets = [
       {
         label: "Opens",
         data: trades.map((trade) => ({
-          x: new Date(trade.date_open).toUTCString(),
+          x: unifiedDateStr(trade.date_open),
           y: parseFloat(trade.price_open),
         })),
         pointStyle: trades.map((trade) =>
@@ -70,7 +73,7 @@
       {
         label: "Opens",
         data: trades.map((trade) => ({
-          x: new Date(trade.date_close).toUTCString(),
+          x: unifiedDateStr(trade.date_close),
           y: parseFloat(trade.price_close),
         })),
         pointStyle: "triangle",
@@ -87,7 +90,7 @@
         label: "Price",
         data: (prices || []).map((item) => item.v),
         borderColor: color,
-        borderWidth: 2,
+        borderWidth: 1,
         fill: false,
       },
     ];
