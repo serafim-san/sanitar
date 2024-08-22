@@ -1,6 +1,6 @@
 FROM node:20.10-bookworm-slim as build
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@8
 
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
